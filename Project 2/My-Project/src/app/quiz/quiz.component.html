@@ -1,0 +1,47 @@
+<div class="content">
+<div class="content-t" *ngIf="Test">
+  <div class="content-left">
+   <h3> Hello,{{ userName }} Welcome to the Quiz Test.</h3>
+  </div>
+  <div class="content-right">
+    <a [routerLink]="['']" routerLinkActive="router-link-active" ><button type="Logout" class="btnn2">Logout</button></a>
+  </div>
+ </div>
+  <div class="content1">
+      <div *ngIf="Test">
+        <p class="text-center">{{ currentQuiz +1 }} of {{ quizzes.length }}</p>
+          <h3>{{ quizzes[currentQuiz].question }}</h3>
+          <ul class="list-group" *ngFor="let quiz of quizzes[currentQuiz].answer">
+              <li class="list-group-item" appBackground [correctAnswer]="quiz.correct">
+                <input type="radio" name="Option" (change)="onAnswer(quiz.correct)" [disabled]="answerSelected">  
+                {{ quiz.Option }}</li>
+          </ul>
+      </div>
+  </div>
+<div class="container" *ngIf="passFail">
+  <div class="content-t">
+    <div class="content-left">
+      <h3> Hello,{{ userName }} You'r Result is here.</h3>
+     </div>
+     <div class="content-right">
+      <a [routerLink]="['']" routerLinkActive="router-link-active" ><button type="Logout" class="btnn2">Logout</button></a>
+    </div>
+  </div> 
+  <div class="content1">
+    correct Answer: {{ correctAnswer }}/{{ quizzes.length }} <br>
+    {{ userName }}, you should have to correct 12 Answer eligable to pass.
+  </div>  
+</div>
+</div>
+<div class="content1">
+  <div *ngIf="currentQuestion">
+    <button type="Next" class="btnn2" (click)="nextQue()">Next&#10095;</button>
+  </div>
+  
+  <div *ngIf="result">
+    <button type="submit" class="btnn2" (click)="showResult()">Result</button>
+  </div>
+</div>
+
+ 
+
